@@ -1,4 +1,4 @@
-# Cookiecutter PyPackage
+# Cookiecutter StepWorkflow
 
 [![Example Repo Status](https://github.com/AllenCellModeling/cookiecutter-stepworkflow/workflows/Build%20Example%20Repo/badge.svg)](https://github.com/AllenCellModeling/cookiecutter-stepworkflow/tree/example-build)
 
