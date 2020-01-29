@@ -12,7 +12,7 @@ Docs: https://docs.pytest.org/en/latest/
 """
 
 import pytest
-from {{ cookiecutter.project_slug }}.raw import Raw
+from {{cookiecutter.project_slug}}.steps import Raw
 
 
 # This test just checks to see if the raw step instantiates and runs
