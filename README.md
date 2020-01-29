@@ -139,7 +139,10 @@ To make a new step in your workflow, in the main project directory use
 make_new_step <StepName>
 ```
 
-This will create a `StepName` class in `<project_name/steps/step_name/step_name.py>`, with a `run` method that is ready for you to edit.  Maybe you want to do some QC on your data?
+This will create a `StepName` class in `<project_name/steps/step_name/step_name.py>`, with a `run` method that is ready for you to edit.
+
+If your step directly depends on the output of another step for input data to this step, set the `direct_upstream_tasks` kwarg in the class `__init__` method to be a list of the steps this one depends on.
+The list should be of step _classes_, e.g. `direct_upstream_tasks = [Raw]`.
 
 For your step to run successfully, you need to save a dataframe manifest of the files you're writing out to `self.manifest`, and then save that as `manifest.csv`.  See the `Raw` step for an example.
 
