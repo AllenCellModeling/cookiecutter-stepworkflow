@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 from quilt3.packages import Package
-from step.constants import DEFAULT_QUILT_PACKAGE_OWNER, DEFAULT_QUILT_STORAGE
+from datastep.constants import DEFAULT_QUILT_PACKAGE_OWNER, DEFAULT_QUILT_STORAGE
 
 
 class QuiltInit:

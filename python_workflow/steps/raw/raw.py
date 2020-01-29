@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 from PIL import Image
 from tqdm import tqdm
-from step import Step, log_run_params
+from datastep import Step, log_run_params
 
 # example step: generates random images and saves them in raw/images
 class Raw(Step):
