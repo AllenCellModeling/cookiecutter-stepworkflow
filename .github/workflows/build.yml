@@ -27,12 +27,6 @@ jobs:
       run: |
         cookiecutter . --no-input
         rm -Rf python_workflow/.github/workflows/
-    - name: Install Generated Repo Dependencies
-      run: |
-        pip install -e python_workflow[all]
-    - name: Run Generated Repo Tests
-      run: |
-        pytest python_workflow/python_workflow/tests/
     - name: Publish Repo
       uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
