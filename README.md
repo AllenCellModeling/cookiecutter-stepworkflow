@@ -31,6 +31,12 @@ Whatever you named your project, make a conda environment of the same name:
 conda create --name <project_name> python=3.7
 ```
 
+and activate it with
+
+```
+conda activate <project_name>
+```
+
 To install the project as a python package, `cd` into the project directory, and then
 
 ```
