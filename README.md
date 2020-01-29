@@ -12,8 +12,10 @@ AICS Cookiecutter template for a simple data + code workflow:
 ## Getting started with this template
 To use this template for a new workflow, use the following commands and then follow the prompts from the terminal.
 
-  - `pip install cookiecutter`
-  - `cookiecutter gh:AllenCellModeling/cookiecutter-stepworkflow`
+```
+pip install cookiecutter
+cookiecutter gh:AllenCellModeling/cookiecutter-stepworkflow
+```
 
 ## Configuring your new project
 Once you've followed the prompts, you should have a template repository that we need to
