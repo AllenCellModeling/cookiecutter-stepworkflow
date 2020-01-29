@@ -45,6 +45,7 @@ interactive_requirements = [
 ]
 
 requirements = [
+    "docutils<0.16,>=0.10" # needed for botocore (quilt dependency)
     "fire",
     "numpy",
     "pandas",
