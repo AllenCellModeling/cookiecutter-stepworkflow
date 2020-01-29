@@ -4,82 +4,159 @@
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
 
-AICS Cookiecutter template for a simple data + code workflow.
+AICS Cookiecutter template for a simple data + code workflow:
 
+  - git(hub) for code
+  - quilt for data
 
-## Quickstart
-To use this template use the following commands and then follow the prompts from the terminal.
+## Getting started with this template
+To use this template for a new workflow, use the following commands and then follow the prompts from the terminal.
 
-1. `pip install cookiecutter`
-2. `cookiecutter gh:AllenCellModeling/cookiecutter-stepworkflow`
+  - `pip install cookiecutter`
+  - `cookiecutter gh:AllenCellModeling/cookiecutter-stepworkflow`
 
-## The Four Commands You Need To Know
-1. `pip install -e .[dev]`
+## Configuring your new project
+Once you've followed the prompts, you should have a template repository that we need to
 
-    This will install your package in editable mode with all the required development dependencies (i.e. `tox`).
+  - install as a python package
+  - connect to github
+  - connect to quilt
 
-2. `make build`
+### Install as a python package
+First, we'll make a `conda` environment to house this project's python dependencies.  If you don't have `conda` installed, install it with [miniconda](https://docs.conda.io/en/latest/miniconda.html).
 
-    This will run `tox` which will run all your tests in both Python 3.6 and Python 3.7 as well as linting your code.
+Whatever you named your project, make a conda environment of the same name:
 
-3. `make clean`
+```
+conda create --name <project_name> python=3.7
+```
 
-    This will clean up various Python and build generated files so that you can ensure that you are working in a clean
-    environment.
+To install the project as a python package, `cd` into the project directory, and then
 
-4. `make docs`
+```
+pip install -e .[dev]
+```
 
-    This will generate and launch a web browser to view the most up-to-date documentation for your Python package.
+This will install your package in editable mode with all the required development dependencies.
 
+### Connect to github
 
-    ## About
-    `Cookiecutter` is a Python package to generate templated projects.
-    This repository is a template for `cookiecutter` to generate a Python project which contains following:
+First, make the project a a git repository with
 
-    * A directory structure for your project
-    * Prebuilt `setup.py` file to help you develop and install your package
-    * Includes examples of good Python practices, including tests
-    * Continuous integration
-      * Preconfigured to generate project documentation
-      * Preconfigured to automatically run tests every time you push to GitHub
-      * Preconfigured to help you release your package publicly (PyPI)
+```
+git init
+git add .
+git commit -m "initial commit"
+```
 
-    We think that this template provides a good starting point for any Python project.
+Then, create an empty repository on github that has the same name as your project (you need to do this via the github website). Don't initialize it with a readme or anything.
 
-    ## Features
-    * Uses `tox` (an environment manager) and `pytest` for local testing, simply run `tox` or `make build`
-    from a terminal in the project home directory
-    * Runs tests on Windows, Mac, and Ubuntu on every branch and pull request commit using GitHub Actions
-    * Releases your Python Package to PyPI when you push to `stable` using GitHub Actions
-    * Automatically builds documentation using Sphinx on every push to master and deploys to GitHub Pages
-    * Includes example code samples for objects, tests, and bin scripts
+Once the github repo is created, push your project up there:
 
-    ## Example
-    * For an example of the base project that is built from this template, go to the
-    [example-build branch](https://github.com/AllenCellModeling/cookiecutter-stepworkflow/tree/example-build).
+```
+git remote add origin git@github.com:AllenCellModeling/<project_name>.git
+git push -u origin master
+```
 
+### Connect to quilt
 
-#### Optional Steps:
-* Register your project with Codecov:
-  * Make an account on [codecov.io](https://codecov.io) (Recommended to sign in with GitHub)
-  * Select the organization you want to link a repository to and click: `Add new repository`
-  * Copy the token provided, go to your GitHub repository's settings and under the `Secrets` tab, add a secret called
-  `CODECOV_TOKEN` with the token you just copied. Don't worry, no one will see this token because it will be encrypted.
-* Register your project with PyPI:
-  * Make an account on [pypi.org](https://pypi.org)
-  * Go to your GitHub repository's settings and under the `Secrets` tab, add a secret called `PYPI_TOKEN` with your
-  password for your PyPI account. Don't worry, no one will see this password because it will be encrypted.
-  * Next time you push to the branch: `stable`, GitHub actions will build and deploy your Python package to PyPI.
-  * _Recommendation: Prior to pushing to `stable` it is recommended to install and run `bumpversion` as this will,
-  tag a git commit for release and update the `setup.py` version number._
-* Add branch protections to `master`
-  * To protect from just anyone pushing to `master`
-  * Go to your GitHub repository's settings and under the `Branches` tab, click `Add rule` and select the settings you
-  believe best.
-  * _Recommendations:_
-    * _Require pull request reviews before merging_
-    * _Require status checks to pass before merging (Recommended: lint and test)_
+Access to quilt data in S3 requires two files:
 
+`~/.aws/credentials`:
 
+```
+[default]
+aws_access_key_id=<your_secret_access_key_id>
+aws_secret_access_key=<your_secret_access_key>
+```
 
-**Original repo:** https://github.com/audreyr/cookiecutter-pypackage/
+`~/.aws/config`:
+
+```
+[default]
+region=us-west-2
+```
+
+Once you have that set up, initialize an empty data repository and push it to quilt:
+
+```
+<project_name> quilt init
+```
+
+## Running your workflow
+
+### Example step
+This template comes with an example first workflow step `Raw`.  
+
+#### Run
+You should be able to run this with the command
+
+```
+<project_name> raw run
+```
+
+This will write out some "raw data" (some randomly generated images) to `local_staging/raw`.
+
+You should edit the `run` function of the `Raw` class in `<project_name>/steps/raw/raw.py` to do something relevant to your workflow, e.g. aggregating raw data and getting it ready to push to quilt.
+
+#### Push
+To push the data in `local_staging` to quilt, use
+
+```
+<project_name> raw push
+```
+
+If your git branch is on `master`, this will save your data in quilt to `aics/<project_name>/master/raw`.
+
+#### Checkout
+To download the remote data and overwrite your local data, use
+
+```
+<project_name> raw checkout
+```
+
+#### Pull
+To download the remote data needed as input to run a step, use
+
+```
+<project_name> raw pull
+```
+
+Since `Raw` is the first step, and doesn't need any inputs, this doesn't do anything here.
+
+### Add a new step
+To make a new step in your workflow, in the main project directory use
+
+```
+make_new_step <StepName>
+```
+
+This will create a `StepName` class in `<project_name/steps/step_name/step_name.py>`, with a `run` method that is ready for you to edit.  Maybe you want to do some QC on your data?
+
+For your step to run successfully, you need to save a dataframe manifest of the files you're writing out to `self.manifest`, and then save that as `manifest.csv`.  See the `Raw` step for an example.
+
+### Run everything at once
+To run all of your steps at once, use
+
+```
+<project_name> all run
+```
+
+`push` and `checkout` also work with `all` this way, to push or checkout all of your data at once.
+
+If you add a new step to your workflow, you should also edit `<project_name>/bin/all.py` and in the `All` class, change `self.step_list` to include your new steps, in the order in which you want to run them.
+
+More sophisticated workflow management is coming soon.
+
+### Branches
+
+You won't be able to push data to quilt unless your git status is clean.  This is intended to maintain parity between the data we save, and the code that generated it.  To have alternate version of workflow data, just switch to a new git branch:
+
+```
+git checkout -b <new_branch_name>
+```
+
+Pushing data to quilt with e.g. `<project_name> push raw` will then save your data to `aics/<project_name>/<new_branch_name>/raw`.
+
+## Optional configuration:
+See the readme [here](https://github.com/AllenCellModeling/cookiecutter-pypackage) for a bunch of optional infrastructure you can (and should) add, e.g. docs, testing, etc.
