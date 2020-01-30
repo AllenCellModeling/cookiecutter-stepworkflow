@@ -66,7 +66,7 @@ git remote add origin git@github.com:AllenCellModeling/<project_name>.git
 git push -u origin master
 ```
 
-If you get permissions errors, make sure you have (ssh keys installed)[https://help.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent], or use `https://github.com` instead of `git@github.com:` in the origin address above.
+If you get permissions errors, make sure you have [ssh keys installed](https://help.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent), or use `https://github.com` instead of `git@github.com:` in the origin address above.
 
 ### Connect to quilt
 
