@@ -1,3 +1,4 @@
+import inspect
 import fire
 
 from {{ cookiecutter.project_slug }} import steps
