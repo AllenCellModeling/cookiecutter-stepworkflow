@@ -35,3 +35,10 @@ class All:
         """
         for step in self.step_list:
             step.push()
+
+    def clean(self):
+        """
+        Push all steps.
+        """
+        for step in self.step_list:
+            step.clean()
