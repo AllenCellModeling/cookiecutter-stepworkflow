@@ -68,6 +68,9 @@ git push -u origin master
 
 If you get permissions errors, make sure you have [ssh keys installed](https://help.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent), or use `https://github.com` instead of `git@github.com:` in the origin address above.
 
+Your initial commit will show a broken build badge.
+To fix this, configure codecov following the instructions [here](https://github.com/AllenCellModeling/cookiecutter-pypackage).
+
 ### Connect to quilt
 
 Access to quilt data in S3 requires two files:
