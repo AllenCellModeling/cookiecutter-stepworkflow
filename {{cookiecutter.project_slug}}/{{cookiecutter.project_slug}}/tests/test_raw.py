@@ -16,7 +16,7 @@ from {{cookiecutter.project_slug}}.steps import Raw
 
 
 # This test just checks to see if the raw step instantiates and runs
-def test_raw_run():
-    raw = Raw(N=10)
+def test_raw_run(N=10):
+    raw = Raw(N=N)
     raw.run()
-    assert len(raw.manifest == 10)
+    assert len(raw.manifest) == N
