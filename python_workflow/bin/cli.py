@@ -1,9 +1,10 @@
 import inspect
 import fire
 
+from datastep.quilt_utils import _Quilt
+
 from python_workflow import steps
 from python_workflow.bin.all import All
-from python_workflow.bin.quilt_init import QuiltInit
 
 
 def cli():
@@ -13,4 +14,4 @@ def cli():
         if inspect.isclass(step)
     }
 
-    fire.Fire({**step_map, "all": All, "quilt": QuiltInit})
+    fire.Fire({**step_map, "all": All, "quilt": _Quilt})
