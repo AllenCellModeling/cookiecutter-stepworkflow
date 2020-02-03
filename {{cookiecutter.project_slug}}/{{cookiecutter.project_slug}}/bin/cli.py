@@ -1,7 +1,7 @@
 import inspect
 import fire
 
-from datastep.quilt_utils import _Quilt
+from datastep.quilt_utils import QuiltCli
 
 from {{ cookiecutter.project_slug }} import steps
 from {{ cookiecutter.project_slug }}.bin.all import All
