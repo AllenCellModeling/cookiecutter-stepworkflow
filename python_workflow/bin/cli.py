@@ -1,7 +1,7 @@
 import inspect
 import fire
 
-from datastep.quilt_utils import _Quilt
+from datastep.quilt_utils import QuiltCli
 
 from python_workflow import steps
 from python_workflow.bin.all import All
