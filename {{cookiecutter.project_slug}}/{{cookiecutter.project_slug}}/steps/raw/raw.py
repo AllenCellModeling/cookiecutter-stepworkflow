@@ -7,8 +7,8 @@ from datastep import Step, log_run_params
 
 # example step: generates random images and saves them in raw/images
 class Raw(Step):
-    def __init__(self, direct_upstream_tasks=None, config=None, **kwargs):
-        super().__init__(direct_upstream_tasks, config)
+    def __init__(self, direct_upstream_tasks=[], config=None, **kwargs):
+        super().__init__(direct_upstream_tasks=direct_upstream_tasks, config=config)
 
     @log_run_params
     def run(self, N=10, **kwargs):
