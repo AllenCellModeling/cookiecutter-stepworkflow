@@ -14,4 +14,4 @@ def cli():
         if inspect.isclass(step)
     }
 
-    fire.Fire({**step_map, "all": All, "quilt": _Quilt})
+    fire.Fire({**step_map, "all": All, "quilt": QuiltCli})
