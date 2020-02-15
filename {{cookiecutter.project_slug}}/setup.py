@@ -45,13 +45,14 @@ interactive_requirements = [
 ]
 
 requirements = [
-    "datastep",
-    "docutils<0.16", # needed for botocore (quilt dependency)
+    "datastep>=0.1.4",
+    "docutils<0.16",  # needed for botocore (quilt dependency)
     "fire",
     "numpy",
     "pandas",
-    "python-dateutil<=2.8.0",  # need <=2.8.0 for quilt3 in step
     "Pillow",
+    "prefect",
+    "python-dateutil<=2.8.0",  # need <=2.8.0 for quilt3 in step
 ]
 
 extra_requirements = {
