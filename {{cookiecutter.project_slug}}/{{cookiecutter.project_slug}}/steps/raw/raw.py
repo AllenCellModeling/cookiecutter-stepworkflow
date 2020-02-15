@@ -26,7 +26,7 @@ class Raw(Step):
     # You only need to have an __init__ if you aren't using the default values
     # In this case, we could get rid of it but for the purposes of this example
     # we will keep it.
-    def __init__(self, direct_upstream_tasks=[], config=None, **kwargs):
+    def __init__(self, direct_upstream_tasks=[], config=None):
         super().__init__(direct_upstream_tasks=direct_upstream_tasks, config=config)
 
     @log_run_params
