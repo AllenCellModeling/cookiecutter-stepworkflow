@@ -11,12 +11,12 @@ Docs: https://docs.pytest.org/en/latest/
       https://docs.pytest.org/en/latest/goodpractices.html#conventions-for-python-test-discovery
 """
 
-import pytest
 from {{cookiecutter.project_slug}}.steps import Raw
 
 
 # This test just checks to see if the raw step instantiates and runs
-def test_raw_run(N=10):
-    raw = Raw(N=N)
-    raw.run()
-    assert len(raw.manifest) == N
+def test_raw_run(n=3):
+    raw = Raw()
+    images = raw.run(n=n)
+    assert len(raw.manifest) == n
+    assert len(images) == n

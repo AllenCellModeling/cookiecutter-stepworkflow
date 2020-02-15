@@ -11,4 +11,3 @@ __version__ = "{{ cookiecutter.version }}"
 
 def get_module_version():
     return __version__
-    
