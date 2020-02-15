@@ -77,10 +77,10 @@ class All:
             # If you want to utilize some debugging functionality pass debug
             # If you don't utilize any of these, just pass the parameters you need.
             images = raw(
-                n=3,
                 distributed_executor_address=distributed_executor_address,
                 clean=clean,
-                debug=debug
+                debug=debug,
+                **kwargs,  # Allows us to pass `--n {some integer}` or other params
             )
 
         # Run flow and get ending state
