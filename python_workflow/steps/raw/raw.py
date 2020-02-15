@@ -1,40 +1,63 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+import logging
 from pathlib import Path
+from typing import List
+
 import numpy as np
 import pandas as pd
+from datastep import Step, log_run_params
 from PIL import Image
 from tqdm import tqdm
-from datastep import Step, log_run_params
 
-# example step: generates random images and saves them in raw/images
+###############################################################################
+
+log = logging.getLogger(__name__)
+
+###############################################################################
+
+
 class Raw(Step):
-    def __init__(self, direct_upstream_tasks=[], config=None, **kwargs):
+    """
+    Example step that generates random images.
+    """
+
+    # You only need to have an __init__ if you aren't using the default values
+    # In this case, we could get rid of it but for the purposes of this example
+    # we will keep it.
+    def __init__(self, direct_upstream_tasks=[], config=None):
         super().__init__(direct_upstream_tasks=direct_upstream_tasks, config=config)
 
     @log_run_params
-    def run(self, N=10, **kwargs):
+    def run(self, n: int = 10, **kwargs) -> List[Path]:
         """
-        Generate N random images and save them to /images
+        Generate N random images and save them to /images.
         """
 
-        # empty manifest to fill in -- add more columns for e.g. labels, metadata, etc.
-        self.manifest = pd.DataFrame(index=range(N), columns=["filepath"])
+        # Empty manifest to fill in -- add more columns for e.g. labels, metadata, etc.
+        self.manifest = pd.DataFrame(index=range(n), columns=["filepath"])
 
-        # subdirectory for the images
+        # Subdirectory for the images
         imdir = self.step_local_staging_dir / Path("images")
         imdir.mkdir(parents=True, exist_ok=True)
 
-        # set seed for reproducible random images
+        # Set seed for reproducible random images
         np.random.seed(seed=112358)
 
-        # create images, save them, and fill in dataframe
-        for i in tqdm(range(N), desc="creating and saving images"):
-            A = np.random.rand(128,128,4) * 255
-            img = Image.fromarray(A.astype('uint8')).convert('RGBA')
+        # Create images, save them, and fill in dataframe
+        images = []
+        for i in tqdm(range(n), desc="Creating and saving images"):
+            A = np.random.rand(128, 128, 4) * 255
+            img = Image.fromarray(A.astype("uint8")).convert("RGBA")
             path = imdir / Path(f"image_{i}.png")
             img.save(path)
             self.manifest.at[i, "filepath"] = path
+            images.append(path)
 
-        # save manifest as csv
+        # Save manifest as csv
         self.manifest.to_csv(
             self.step_local_staging_dir / Path("manifest.csv"), index=False
         )
+
+        return images
