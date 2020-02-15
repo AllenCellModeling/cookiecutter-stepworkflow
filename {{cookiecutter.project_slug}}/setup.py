@@ -92,7 +92,11 @@ setup(
         "Programming Language :: Python :: 3.7",
     ],
     description="{{ cookiecutter.project_short_description }}",
-    entry_points={"console_scripts": ["{{ cookiecutter.project_slug }}={{ cookiecutter.project_slug }}.bin.cli:cli"]},
+    entry_points={
+        "console_scripts": [
+            "{{ cookiecutter.project_slug }}={{ cookiecutter.project_slug }}.bin.cli:cli"
+        ]
+    },
     install_requires=requirements,
 {%- if cookiecutter.open_source_license in license_classifiers %}
     license="{{ cookiecutter.open_source_license }}",
