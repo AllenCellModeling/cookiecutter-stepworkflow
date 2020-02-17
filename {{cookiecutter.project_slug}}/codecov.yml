@@ -1,0 +1,8 @@
+ignore:
+    - "**/__init__.py"
+    - "{{cookiecutter.project_slug}}/bin/.*"
+    - "{{cookiecutter.project_slug}}/vendor/.*"
+
+coverage:
+  status:
+    patch: off

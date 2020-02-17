@@ -14,7 +14,7 @@ from typing import Optional
 from prefect import Flow
 from prefect.engine.executors import DaskExecutor, LocalExecutor
 
-from {{ cookiecutter.project_slug }} import steps
+from {{cookiecutter.project_slug}} import steps
 
 ###############################################################################
 
