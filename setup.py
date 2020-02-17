@@ -45,7 +45,7 @@ interactive_requirements = [
 ]
 
 requirements = [
-    "datastep>=0.1.4",
+    "datastep>=0.1.5",
     "docutils<0.16",  # needed for botocore (quilt dependency)
     "fire",
     "numpy",
@@ -81,7 +81,11 @@ setup(
         "Programming Language :: Python :: 3.7",
     ],
     description="Python Workflow gets you started managing your code and data.",
-    entry_points={"console_scripts": ["python_workflow=python_workflow.bin.cli:cli"]},
+    entry_points={
+        "console_scripts": [
+            "python_workflow=python_workflow.bin.cli:cli"
+        ]
+    },
     install_requires=requirements,
     license="Allen Institute Software License",
     long_description=readme,
