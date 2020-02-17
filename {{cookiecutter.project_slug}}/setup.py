@@ -45,7 +45,7 @@ interactive_requirements = [
 ]
 
 requirements = [
-    "datastep>=0.1.4",
+    "datastep>=0.1.5",
     "docutils<0.16",  # needed for botocore (quilt dependency)
     "fire",
     "numpy",
