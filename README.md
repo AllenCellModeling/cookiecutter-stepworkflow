@@ -10,6 +10,8 @@ AICS Cookiecutter template for a simple data + code workflow:
   - quilt for data
   - prefect to combine
 
+[An Example Workflow Produced with this Template](https://github.com/AllenCellModeling/example_step_workflow)
+
 ## Getting started with this template
 To use this template for a new workflow, use the following commands and then follow the prompts from the terminal.
 
