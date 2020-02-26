@@ -5,6 +5,7 @@
   "project_name": "Python Workflow",
   "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
   "project_short_description": "Python Workflow gets you started managing your code and data.",
+  "pypi_username": "{{ cookiecutter.github_username }}",
   "version": "0.1.0",
   "open_source_license": [
     "Allen Institute Software License",
