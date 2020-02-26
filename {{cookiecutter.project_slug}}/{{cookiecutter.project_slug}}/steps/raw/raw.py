@@ -5,11 +5,12 @@ import logging
 from pathlib import Path
 from typing import List
 
+from tqdm import tqdm
+
 import numpy as np
 import pandas as pd
 from datastep import Step, log_run_params
 from PIL import Image
-from tqdm import tqdm
 
 ###############################################################################
 
@@ -19,10 +20,6 @@ log = logging.getLogger(__name__)
 
 
 class Raw(Step):
-    """
-    Example step that generates random images.
-    """
-
     # You only need to have an __init__ if you aren't using the default values
     # In this case, we could get rid of it but for the purposes of this example
     # we will keep it.
@@ -33,6 +30,16 @@ class Raw(Step):
     def run(self, n: int = 10, **kwargs) -> List[Path]:
         """
         Generate N random images and save them to /images.
+
+        Parameters
+        ----------
+        n: int
+            Number of images to generate.
+
+        Returns
+        -------
+        images: List[Path]
+            A list of paths that point to the generated images.
         """
 
         # Empty manifest to fill in -- add more columns for e.g. labels, metadata, etc.
