@@ -45,7 +45,9 @@ interactive_requirements = [
 ]
 
 requirements = [
+    "bokeh",
     "datastep>=0.1.5",
+    "distributed",
     "docutils<0.16",  # needed for botocore (quilt dependency)
     "fire",
     "numpy",
@@ -90,6 +92,7 @@ setup(
         "Natural Language :: English",
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
     ],
     description="{{ cookiecutter.project_short_description }}",
     entry_points={
