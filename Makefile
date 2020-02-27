@@ -47,3 +47,13 @@ clean:  ## clean all build, python, and testing files
 
 build: ## run tox / run tests and lint
 	tox
+
+gen-docs: ## generate Sphinx HTML documentation, including API docs
+	rm -f docs/python_workflow*.rst
+	rm -f docs/modules.rst
+	sphinx-apidoc -o docs/ python_workflow **/tests/
+	$(MAKE) -C docs html
+
+docs: ## generate Sphinx HTML documentation, including API docs, and serve to browser
+	make gen-docs
+	$(BROWSER) docs/_build/html/index.html

@@ -11,9 +11,9 @@ and configure their IO in the `run` function.
 import logging
 from typing import Optional
 
+from distributed import LocalCluster
 from prefect import Flow
 from prefect.engine.executors import DaskExecutor, LocalExecutor
-
 from python_workflow import steps
 
 ###############################################################################
@@ -27,13 +27,12 @@ class All:
     def __init__(self):
         """
         Set all of your available steps here.
-        This is only used for data logging operations, not running.
+        This is only used for data logging operations, not computation purposes.
         """
         self.step_list = [steps.Raw()]
 
     def run(
         self,
-        distributed_executor_address: Optional[str] = None,
         clean: bool = False,
         debug: bool = False,
         **kwargs,
@@ -43,8 +42,6 @@ class All:
 
         Parameters
         ----------
-        distributed_executor_address: Optional[str]
-            An optional executor address to pass to some computation engine.
         clean: bool
             Should the local staging directory be cleaned prior to this run.
             Default: False (Do not clean)
@@ -68,16 +65,21 @@ class All:
         if debug:
             exe = LocalExecutor()
         else:
-            exe = DaskExecutor()
+            # Set up connection to computation cluster
+            cluster = LocalCluster()
+
+            # Inform of Dask UI
+            log.info(f"Cluster dashboard available at: {cluster.dashboard_link}")
+
+            # Create dask executor
+            exe = DaskExecutor(cluster.scheduler_address)
 
         # Configure your flow
         with Flow("python_workflow") as flow:
-            # If your step utilizes a secondary flow with dask pass the executor address
             # If you want to clean the local staging directories pass clean
             # If you want to utilize some debugging functionality pass debug
             # If you don't utilize any of these, just pass the parameters you need.
-            images = raw(
-                distributed_executor_address=distributed_executor_address,
+            raw(
                 clean=clean,
                 debug=debug,
                 **kwargs,  # Allows us to pass `--n {some integer}` or other params
