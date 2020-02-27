@@ -10,7 +10,6 @@ Welcome to {{ cookiecutter.project_name }}'s documentation!
    installation
    Package modules <modules>
    contributing
-   math
 
 .. mdinclude:: ../README.md
 
