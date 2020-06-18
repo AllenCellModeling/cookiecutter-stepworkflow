@@ -14,7 +14,8 @@ Ready to contribute? Here's how to set up `{{ cookiecutter.project_slug }}` for 
     git clone git@github.com:{your_name_here}/{{ cookiecutter.project_slug }}.git
     ```
 
-3. Install the project in editable mode. (It is also recommended to work in a virtualenv or anaconda environment):
+3. Install the project in editable mode. (It is also recommended to work in a
+virtualenv or anaconda environment):
 
     ```bash
     cd {{ cookiecutter.project_slug }}/
