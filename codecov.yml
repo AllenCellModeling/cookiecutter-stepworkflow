@@ -1,0 +1,8 @@
+ignore:
+    - "**/__init__.py"
+    - "python_workflow/bin/.*"
+    - "python_workflow/vendor/.*"
+
+coverage:
+  status:
+    patch: off
