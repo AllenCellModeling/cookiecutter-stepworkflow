@@ -9,7 +9,6 @@ and configure their IO in the `run` function.
 """
 
 import logging
-from typing import Optional
 
 from distributed import LocalCluster
 from prefect import Flow
