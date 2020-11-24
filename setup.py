@@ -41,12 +41,12 @@ step_workflow_requirements = [
     "bokeh>=2.0.2",
     "dask[bag]>=2.18.1",
     "dask_jobqueue>=0.7.0",
-    "datastep>=0.1.6",
+    "datastep>=0.1.9",
     "distributed>=2.18.0",
-    "docutils<0.16",  # needed for botocore (quilt dependency)
+    "docutils",
     "fire",
-    "prefect>=0.12.0",
-    "python-dateutil<=2.8.0",  # need <=2.8.0 for quilt3 in step
+    "prefect",
+    "python-dateutil",
 ]
 
 requirements = [
