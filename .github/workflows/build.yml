@@ -38,7 +38,6 @@ jobs:
       run: |
         cd python_workflow
         flake8 python_workflow --count --verbose --show-source --statistics
-        black --check python_workflow
     - name: Test Generate Docs
       run: |
         cd python_workflow
