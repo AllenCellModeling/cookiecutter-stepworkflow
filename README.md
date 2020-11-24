@@ -187,4 +187,4 @@ Pushing data to quilt with e.g. `<project_name> push raw` will then save your da
 
 ## Optional configuration:
 See the README [here](https://github.com/AllenCellModeling/cookiecutter-pypackage) for
-a bunch of optional infrastructure you can (and should) add, e.g. docs, testing, etc.
+all of the optional infrastructure you can (and should) add, e.g. docs, testing, etc.
